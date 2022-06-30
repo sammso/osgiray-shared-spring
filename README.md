@@ -17,3 +17,7 @@ mvn clean package
 
 # Install
 
+```
+tar -zxf deploy/target/sharedspring-deploy-1.0.0.tar.gz -C <liferay-home-directory-here>
+```
+

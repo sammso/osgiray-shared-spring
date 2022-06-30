@@ -30,5 +30,6 @@
 	<modules>
 		<module>module</module>
 		<module>portlet</module>
+		<module>deploy</module>
 	</modules>
 </project>
