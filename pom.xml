@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.osgiray.sharedspring</groupId>
+	<artifactId>org.osgiray.sharedspring</artifactId>
+	<version>1.0.0</version>
+	<name>OSGiRay - Shared Spring Portlet PoC</name>
+	<packaging>pom</packaging>		
+	<properties>
+		<spring.ft.version>4.3.30.RELEASE</spring.ft.version>
+		<liferay.repository.url>https://repository-cdn.liferay.com/nexus/content/groups/public/</liferay.repository.url>
+		<java.version>1.8</java.version>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+	<repositories>
+		<repository>
+			<id>liferay-public</id>
+			<url>${liferay.repository.url}</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>liferay-public</id>
+			<url>${liferay.repository.url}</url>
+		</pluginRepository>
+	</pluginRepositories>	
+	<modules>
+		<module>module</module>
+		<module>portlet</module>
+	</modules>
+</project>
