@@ -11,8 +11,9 @@ import static org.osgiray.springmvc.ftb.util.BasicSpringPortletConstants.TEST_AC
 
 import javax.portlet.ActionResponse;
 
-import org.apache.log4j.LogMF;
-import org.apache.log4j.Logger;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.osgiray.springmvc.ftb.pto.PersonPto;
@@ -34,7 +35,8 @@ import org.springframework.web.portlet.bind.annotation.RenderMapping;
 @Controller
 @RequestMapping("VIEW")
 public class BasicSpringPortletViewController {
-    protected final Logger LOG = Logger.getLogger(BasicSpringPortletViewController.class);
+    protected final Log LOG = LogFactoryUtil.getLog(BasicSpringPortletViewController.class);
+            
 
     @Autowired
     private PersonPtoValidator personPtoValidator;
@@ -46,16 +48,18 @@ public class BasicSpringPortletViewController {
 
     @RenderMapping
     public String question(Model model) {
-        LogMF.debug(LOG,"Showing form for user.",null);
+        LOG.debug("Showing form for user.");
         if (!model.containsAttribute(PERSON_PTO)) {
             model.addAttribute(PERSON_PTO, new PersonPto());
         }
+        
+        Thread.currentThread().getName();
         return MAIN_VIEW;
     }
 
     @RenderMapping(params = PARAM_VIEW + "=" + GREETING)
     public String greeting(@ModelAttribute(PERSON_PTO) PersonPto personPto, Model model) {
-        LogMF.debug(LOG,"Showing result for user {0}.",personPto);
+        LOG.debug("Showing result for user :" + personPto);
         Integer days = daysToBirthday(personPto.getDateOfBirth());
         model.addAttribute(DAYS_TO_BIRTHDAY_PARAM, days);
         return GREETING_VIEW;
@@ -67,7 +71,7 @@ public class BasicSpringPortletViewController {
             @ModelAttribute(PERSON_PTO) PersonPto personPto,
             BindingResult result,
             ActionResponse response) {
-        LogMF.info(LOG,"Processing person {0}",personPto);
+        LOG.info("Processing person {0}" + personPto);
         personPtoValidator.validate(personPto,result);
         if (!result.hasErrors()) {
             response.setRenderParameter(PARAM_VIEW, GREETING);

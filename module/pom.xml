@@ -62,6 +62,10 @@
 							org.joda.time.tz.data.Indian,\
 							org.joda.time.tz.data.Pacific,*</Export-Package>
 						<Import-Package>
+							!org.apache.commons.logging*,\
+							!org.apache.log4j.*,\
+							!org.joda.time.*,\
+							!org.springframework.*,\
 							COM.newmonics.PercClassLoader;resolution:="optional",\
 							android.os;resolution:="optional",\
 							bsh;resolution:="optional",\
